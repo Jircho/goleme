@@ -14,7 +14,6 @@
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* ─── Fonts ──────────────────────────────────────── */
     @font-face {
       font-family: 'ITC Stone Sans II';
       src: local('ITC Stone Sans II'), local('ITCStoneSansII'), local('ITC Stone Sans'), local('Stone Sans II');
@@ -25,7 +24,6 @@
       src: local('PerpetualMTPro-Regular'), local('PerpetualMTPro'), local('Perpetual MT Pro'), local('Perpetual');
     }
 
-    /* ─── Reset ─────────────────────────────────────── */
     *,
     *::before,
     *::after {
@@ -58,7 +56,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ─── SCROLL REVEALS ────────────────────────────── */
     .wt-reveal {
       opacity: 0;
       transform: translateY(30px) rotate(var(--tilt, 0deg));
@@ -70,7 +67,6 @@
       transform: translateY(0) rotate(var(--tilt, 0deg));
     }
 
-    /* Headers, Actions and Badges */
     h1,
     h2,
     h3,
@@ -93,14 +89,12 @@
       font-family: 'ITC Stone Sans II', 'ITC Stone Sans', -apple-system, sans-serif;
     }
 
-    /* ─── CUSTOM LOGO STYLE ──────────────────────────── */
     .logo-img {
       height: 32px;
       width: auto;
       display: block;
     }
 
-    /* ─── NAV ─────────────────────────────────────────── */
     .nav {
       width: calc(100% - 24px);
       max-width: 1600px;
@@ -125,8 +119,6 @@
         backdrop-filter 0.3s ease;
     }
 
-    /* Toggled by JS once the page has scrolled past the hero — condenses
-       the bar and switches it to a translucent glass surface. */
     .nav.is-scrolled {
       height: 58px;
       top: 12px;
@@ -143,7 +135,6 @@
       text-decoration: none;
     }
 
-    /* Scissors "snip" easter egg — pops in and snips shut on logo hover */
     .nav__logo-snip {
       position: absolute;
       right: -20px;
@@ -183,9 +174,6 @@
       list-style: none;
     }
 
-    /* Sliding highlight pill — JS moves this behind whichever link is hovered.
-       Selector is deliberately more specific than ".nav__links li" above so
-       its own position/z-index (absolute, behind the links) always win. */
     .nav__links li.nav__pill {
       position: absolute;
       top: 50%;
@@ -236,8 +224,6 @@
       color: var(--ink);
     }
 
-    /* Magnetic CTA — JS nudges this toward the cursor; the sheen sweeps
-       across on hover for a bit of shine. */
     .nav__cta {
       position: relative;
       overflow: hidden;
@@ -261,10 +247,6 @@
       left: 130%;
     }
 
-    /* Wraps the links + actions so a single element can be toggled into a
-       mobile dropdown. On desktop it's `display:contents`, meaning it's
-       invisible to layout — .nav__links and .nav__actions behave exactly
-       like they did before, as direct flex children of .nav. */
     .nav__panel {
       display: contents;
     }
@@ -275,7 +257,6 @@
       align-items: center;
     }
 
-    /* Hamburger toggle — hidden on desktop */
     .nav__burger {
       display: none;
       flex-direction: column;
@@ -347,7 +328,6 @@
       opacity: 0.85;
     }
 
-    /* ─── HERO ────────────────────────────────────────── */
     .hero-section {
       width: 100%;
       background: var(--yellow);
@@ -355,7 +335,6 @@
       position: relative;
     }
 
-    /* Hero section styled as a white floating island with filleted corners - enlarged to 1320px */
     .hero {
       position: relative;
       width: calc(100% - 24px);
@@ -413,7 +392,6 @@
       margin-bottom: 44px;
     }
 
-    /* Prompt box (gradient border via double background) */
     .hero__prompt-card {
       position: relative;
       border: 2.5px solid transparent;
@@ -483,7 +461,6 @@
       border-bottom-right-radius: 32px;
     }
 
-    /* Conversation styling inside the hero right panel */
     .chat-container {
       width: 90%;
       max-width: 540px;
@@ -551,7 +528,6 @@
       background: var(--ink-10);
     }
 
-    /* Floating tool icons in the grid */
     .chat-icon {
       position: absolute;
       font-size: 42px;
@@ -561,14 +537,12 @@
       z-index: 2;
     }
 
-    /* Grid clip decoration */
     .grid-clip {
       position: absolute;
       width: 100px;
       height: auto;
       z-index: 8;
       pointer-events: none;
-      /* anchor rotation on the flower head, not the whole (wide) artwork */
       transform-origin: 22% 48%;
     }
 
@@ -614,7 +588,6 @@
       transform: rotate(-30deg);
     }
 
-    /* ─── LOGOS STRIP ─────────────────────────────────── */
     .logos {
       width: 100%;
       background: transparent;
@@ -685,10 +658,6 @@
       }
     }
 
-    /* ─── FEATURE CARDS (highlights row, sits above the walkthrough) ───
-       White dashed-border cards floating directly on the yellow
-       hero-section background, four across in a single row — same
-       "numbered step" visual language as .wt-step, just standalone. */
     .feature-cards-wrapper {
       width: 100%;
       background: transparent;
@@ -708,7 +677,7 @@
       position: relative;
       overflow: hidden;
       background: #FFFFFF;
-      border: 2px rgba(29, 28, 27, 0.18);
+      border: 2px dashed rgba(29, 28, 27, 0.18);
       border-radius: 20px;
       padding: 24px;
       transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
@@ -736,14 +705,6 @@
       padding-right: 32px;
     }
 
-    /* No gradient chip on purpose — a colored icon "badge" is the one
-       visual cliche every AI-template feature grid reaches for by default.
-       The brand gradient here is reserved for actual CTAs (see .btn--filled,
-       .nav__cta) so it keeps meaning "click me"; reusing it as passive
-       decoration on every card would cheapen that signal and read as
-       generic filler. A plain ink-colored outline glyph, tucked into the
-       corner like a stamp rather than staged front-and-center, reads as
-       an intentional editorial detail instead of a templated icon tile. */
     .feature-card__icon {
       position: absolute;
       top: 24px;
@@ -782,7 +743,6 @@
       }
     }
 
-    /* ─── FEATURES / WALKTHROUGH SECTION ─────────────── */
     .features-section-wrapper {
       width: 100%;
       background: transparent;
@@ -803,7 +763,6 @@
       z-index: 2;
     }
 
-    /* ── Left nav steps ── */
     .wt-steps {
       width: 380px;
       flex-shrink: 0;
@@ -910,7 +869,6 @@
       color: var(--ink-60);
     }
 
-    /* ── SVG path divider ── */
     .wt-curve {
       position: absolute;
       top: 0;
@@ -921,7 +879,6 @@
       z-index: 4;
     }
 
-    /* ── Right screen panel ── */
     .wt-screen-col {
       position: absolute;
       top: 0;
@@ -935,7 +892,6 @@
       background: var(--bg);
     }
 
-    /* The "computer screen" container — uses container queries internally */
     .wt-screen {
       container-type: inline-size;
       container-name: screen;
@@ -948,13 +904,6 @@
       box-shadow: 0 8px 40px rgba(29,28,27,0.06), 0 2px 8px rgba(29,28,27,0.04);
       overflow: hidden;
       position: relative;
-      /* Mock-site accent color — scoped to this component only, never the
-         real --yellow tokens used site-wide. The interactive chat picker
-         (light/dark switch + palette swatches, see the "FOOTER..." — er,
-         "WALKTHROUGH ANIMATION ENGINE" script) swaps these via
-         .wt-palette-* modifier classes below, and both phase 1 (skeleton)
-         and phase 2 (final site) read from the same two variables since
-         they share the exact same .wt-website markup. */
       --wt-accent: var(--yellow);
       --wt-accent-dark: var(--yellow-dark);
     }
@@ -962,11 +911,6 @@
     .wt-screen.wt-palette-indigo { --wt-accent: #818CF8; --wt-accent-dark: #5B5FC7; }
     .wt-screen.wt-palette-rose   { --wt-accent: #FB7185; --wt-accent-dark: #E11D48; }
 
-    /* Dark mode — only the body/card area needs a variant; nav + hero are
-       already a dark ink color in both modes. Skeleton shimmer overlays
-       (::after, z-index:5) fully cover nav/hero/cards/gallery regardless
-       of theme, so this is only ever visible once phase 2 (the reveal)
-       is showing. */
     .wt-screen.wt-theme-dark .wt-website__body {
       background: #17171A;
     }
@@ -989,7 +933,6 @@
       color: #fff;
     }
 
-    /* Chrome top bar of the screen */
     .wt-screen__chrome {
       height: 38px;
       background: #F0EEE9;
@@ -1030,15 +973,9 @@
       position: relative;
       height: calc(100% - 38px);
       overflow: hidden;
-      /* Warm neutral so any inter-phase gap blends with skeleton tone, not white */
       background: #EDEAE4;
     }
 
-    /* ── Phase panels: snap OUT, smooth IN ──
-       Only the *entering* phase animates. The outgoing one snaps
-       to opacity:0 immediately — no ghost text, no white flash.
-       Any sub-frame gap shows the warm-grey .wt-screen__body background.
-    */
     .wt-phase {
       position: absolute;
       inset: 0;
@@ -1047,7 +984,7 @@
       display: flex;
       flex-direction: column;
       z-index: 1;
-      transition: none; /* snap hidden instantly on exit */
+      transition: none;
     }
 
     .wt-phase.is-visible {
@@ -1057,9 +994,6 @@
       transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    /* ──────────────────────────────────────────────────
-       PHASE 1 — CHAT
-    ────────────────────────────────────────────────── */
     .wt-chat {
       padding: 20px 20px 0;
       display: flex;
@@ -1166,7 +1100,6 @@
       transform: scale(0.85);
     }
 
-    /* Loading indicator */
     .wt-loading {
       display: flex;
       align-items: center;
@@ -1216,13 +1149,6 @@
       color: var(--ink-60);
     }
 
-    /* ──────────────────────────────────────────────────
-       INTERACTIVE CHOICE PANEL — appears after the AI's chat
-       reply, lets the visitor pick light/dark + an accent
-       palette for the mock site in phases 2-3. Styled like the
-       AI/loading bubbles it sits between (built + torn down each
-       walkthrough cycle by JS, see "WALKTHROUGH ANIMATION ENGINE").
-    ────────────────────────────────────────────────── */
     .wt-choice {
       align-self: flex-start;
       max-width: 88%;
@@ -1259,7 +1185,6 @@
       letter-spacing: 0.4px;
     }
 
-    /* Light/dark pill switch — sun/moon icons flanking a sliding knob */
     .wt-mode-switch {
       position: relative;
       width: 48px;
@@ -1277,13 +1202,6 @@
       background: var(--ink);
     }
 
-    /* Icon slots occupy the *exact* same 18×18 box the knob rests in on
-       each side (top:3px, 3px in from that side's edge) — previously the
-       icons were flex children with 5px padding while the knob was
-       absolutely positioned with a 3px inset, so the two never lined up
-       and the whole thing read as off-center. Matching the box exactly
-       means the icon is always perfectly centered under/beside the knob
-       in both states. */
     .wt-mode-switch__icon-slot {
       position: absolute;
       top: 3px;
@@ -1323,14 +1241,13 @@
       background: #fff;
       box-shadow: 0 1px 3px rgba(29, 28, 27, 0.3);
       transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      z-index: 2; /* always slides on top of whichever icon slot it covers */
+      z-index: 2;
     }
 
     .wt-mode-switch.is-dark .wt-mode-switch__knob {
       transform: translateX(24px);
     }
 
-    /* Palette swatches */
     .wt-palette-picker {
       display: flex;
       gap: 8px;
@@ -1357,7 +1274,6 @@
       box-shadow: 0 0 0 2px var(--ink);
     }
 
-    /* Countdown — thin bar that empties over the 5s decision window */
     .wt-choice__timerbar {
       height: 3px;
       border-radius: 2px;
@@ -1374,34 +1290,21 @@
     }
 
     .wt-choice__timerbar-fill.is-counting {
-      /* Kept in sync with DECISION_MS (5000) in the walkthrough script by
-         hand — if you change one, change the other. */
       transition: transform 5s linear;
       transform: scaleX(0);
     }
 
-    /* ──────────────────────────────────────────────────
-       PHASE 2 — SKELETON (grey shimmer mirror of phase 3)
-    ────────────────────────────────────────────────── */
-
-    /* Make all text invisible in skeleton mode */
     .wt-website--skel,
     .wt-website--skel * {
       color: transparent !important;
       -webkit-text-fill-color: transparent !important;
     }
 
-    /* Shimmer keyframe (shared) */
     @keyframes wt-shimmer {
       0%   { background-position: 200% 0; }
       100% { background-position: -200% 0; }
     }
 
-    /*
-      Each major section gets an ::after shimmer overlay.
-      The overlay sits on top of the actual element content,
-      making everything look like a grey pulsing placeholder.
-    */
     .wt-website--skel .wt-website__nav,
     .wt-website--skel .wt-website__hero,
     .wt-website--skel .wt-service-card,
@@ -1425,7 +1328,6 @@
       position: absolute;
       inset: 0;
       z-index: 5;
-      /* Hero is dark — use a darker shimmer so it reads as a placeholder for a dark section */
       background: linear-gradient(90deg, #2a2927 0%, #3d3b39 50%, #2a2927 100%);
       background-size: 200% 100%;
       animation: wt-shimmer 1.7s ease-in-out infinite;
@@ -1453,7 +1355,6 @@
       animation: wt-shimmer 1.7s ease-in-out infinite;
     }
 
-    /* Stagger the shimmer start per element so they feel organic */
     .wt-website--skel .wt-website__nav::after        { animation-delay: 0.0s; }
     .wt-website--skel .wt-website__hero::after       { animation-delay: 0.2s; }
     .wt-website--skel .wt-service-card:nth-child(1)::after { animation-delay: 0.1s; }
@@ -1463,18 +1364,8 @@
     .wt-website--skel .wt-gallery-img:nth-child(2)::after  { animation-delay: 0.3s; }
     .wt-website--skel .wt-gallery-img:nth-child(3)::after  { animation-delay: 0.45s; }
 
-    /* ──────────────────────────────────────────────────
-       PHASE 3 — POLISHED WEBSITE reveal animation
-
-       Strategy: elements start fully visible (no opacity:0).
-       When .is-revealing is added, each section gets a grey
-       ::before overlay that fades out staggered — it looks
-       like the grey skeleton boxes are being filled with content.
-    ────────────────────────────────────────────────── */
-
-    /* Phase 3 panel: instant switch, fill animation does all the work */
     #wt-phase-2.is-visible {
-      transition: none; /* snap visible immediately — grey overlays start matching skeleton */
+      transition: none;
     }
 
     .wt-website.is-revealing .wt-website__nav,
@@ -1490,7 +1381,6 @@
       100% { opacity: 0; pointer-events: none; }
     }
 
-    /* Nav: light grey fades out to reveal dark nav bar */
     .wt-website.is-revealing .wt-website__nav::before {
       content: '';
       position: absolute;
@@ -1500,7 +1390,6 @@
       animation: wt-fill-reveal 0.4s ease forwards 0s;
     }
 
-    /* Hero: dark grey fades out to reveal the dark hero gradient */
     .wt-website.is-revealing .wt-website__hero::before {
       content: '';
       position: absolute;
@@ -1510,7 +1399,6 @@
       animation: wt-fill-reveal 0.4s ease forwards 0.12s;
     }
 
-    /* Service cards: staggered grey fadeout */
     .wt-website.is-revealing .wt-service-card::before {
       content: '';
       position: absolute;
@@ -1524,7 +1412,6 @@
     .wt-website.is-revealing .wt-service-card:nth-child(2) { --fill-delay: 0.34s; }
     .wt-website.is-revealing .wt-service-card:nth-child(3) { --fill-delay: 0.46s; }
 
-    /* Gallery: staggered grey fadeout */
     .wt-website.is-revealing .wt-gallery-img::before {
       content: '';
       position: absolute;
@@ -1718,13 +1605,10 @@
       aspect-ratio: 1 / 1;
     }
 
-    /* Phase 3 elements are always fully visible — grey overlays handle the reveal */
     .wt-website > * {
       position: relative;
     }
 
-    /* ── Dot path animation ── */
-    /* No CSS transition — rAF drives position frame-by-frame */
     #wt-dot {
       animation: wt-dot-breathe 2.4s ease-in-out infinite;
     }
@@ -1732,12 +1616,7 @@
     @keyframes wt-dot-breathe {
       0%, 100% { filter: drop-shadow(0 0 0px rgba(29,28,27,0.15)); }
       50%       { filter: drop-shadow(0 0 5px rgba(29,28,27,0.55)); }
-    }
-
-
-
-    /* ─── SHOWCASE SECTION ─────────────────────────────── */
-    .showcase {
+    }    .showcase {
       width: 100%;
       padding: 100px 0 120px;
       background: var(--bg);
@@ -1789,7 +1668,6 @@
       overflow: hidden;
     }
 
-    /* Mosaic — 3 independently auto-scrolling rows */
     .mosaic {
       width: 100%;
       display: flex;
@@ -1828,12 +1706,10 @@
       to { transform: translateX(0); }
     }
 
-    /* Pause every row while any tile in the mosaic is being inspected */
     .mosaic:has(.tile:hover) .mosaic__track {
       animation-play-state: paused;
     }
 
-    /* Generic tile */
     .tile {
       position: relative;
       overflow: hidden;
@@ -1849,7 +1725,6 @@
         box-shadow 0.45s ease;
     }
 
-    /* Dim & desaturate the rest of the mosaic while one tile is hovered */
     .mosaic:has(.tile:hover) .tile {
       opacity: 0.4;
       filter: grayscale(85%);
@@ -1863,7 +1738,6 @@
       box-shadow: 0 24px 54px rgba(0, 0, 0, 0.45);
     }
 
-    /* Browser chrome bar */
     .chrome {
       flex-shrink: 0;
       height: 22px;
@@ -1879,7 +1753,6 @@
       border-radius: 50%;
     }
 
-    /* Tile body */
     .body {
       flex: 1;
       display: flex;
@@ -1889,7 +1762,6 @@
       position: relative;
     }
 
-    /* Stacked content inside body */
     .stack {
       display: flex;
       flex-direction: column;
@@ -1912,7 +1784,6 @@
       text-align: center;
     }
 
-    /* ── Color themes ── */
     .dark {
       background: #2E2A27;
     }
@@ -2033,7 +1904,6 @@
       color: #0a3a5c;
     }
 
-    /* Floating pill badge - centered on the seam between row 1 and row 2 */
     .pill {
       position: absolute;
       left: 50%;
@@ -2070,7 +1940,6 @@
       border-radius: 3px;
     }
 
-    /* ─── TRANSITION CTA ──────────────────────────────── */
     .transition-cta {
       width: 100%;
       margin: 0 auto;
@@ -2126,7 +1995,6 @@
       margin-top: 10px;
     }
 
-    /* ─── TESTIMONIALS ────────────────────────────────── */
     .testimonials {
       width: 100%;
       padding: 10px 0;
@@ -2140,11 +2008,6 @@
       width: calc(100% - 40px);
       max-width: 1420px;
       margin: 0 auto;
-      /* Give the balancer a height to work with — without this, auto-height
-         + column-fill: auto lets column 1 grow forever and never spills
-         into columns 2-4 (the bug we just diagnosed via DevTools). Sized
-         to roughly fit 2 cards per column at 4 columns; media queries
-         below re-tune it as columns drop to 3 / 2 / 1. */
       height: 440px;
     }
 
@@ -2172,8 +2035,6 @@
       .testimonials__grid { column-count: 1; }
     }
 
-    /* Pinboard wrapper — holds the rotated card + its "pin" so the pin
-       never rotates or gets clipped by the card's own corner radius */
     .tcard-wrap {
       position: relative;
       width: 100%;
@@ -2182,10 +2043,6 @@
       padding-top: 14px;
     }
 
-    /* Gentle alternating tilt, like notes pinned to a moodboard.
-       Stored as a custom property so the scroll-reveal transform (which
-       also animates translateY on .tcard) can combine with it instead of
-       overwriting it. */
     .tcard-wrap:nth-child(6n+1) .tcard { --tilt: -1.6deg; }
     .tcard-wrap:nth-child(6n+2) .tcard { --tilt: 1.3deg; }
     .tcard-wrap:nth-child(6n+3) .tcard { --tilt: -1deg; }
@@ -2204,14 +2061,8 @@
 
     .tcard-pin {
       position: absolute;
-      /* Kept fully inside the wrap's own box (no negative offset). A pin
-         that pokes above its wrap can get silently clipped by the multicol
-         fragmentation context for any card that isn't first in its column —
-         that's why some pins were going missing. */
       top: 4px;
       left: 34px;
-      /* Constrain by height, not width — keeps the pin a small, believable
-         accent no matter whether the source art is tall/narrow or wide/short */
       height: 30px;
       width: auto;
       max-width: 34px;
@@ -2227,7 +2078,6 @@
       transform: rotate(0deg) scale(1.08);
     }
 
-    /* Testimonial cards styled as white cards with rounded corners on yellow divider background */
     .tcard {
       position: relative;
       background: #FFFFFF;
@@ -2254,7 +2104,6 @@
       margin: 0;
     }
 
-    /* Big decorative quotation mark bleeding off the card, sitting behind the text */
     .tcard::after {
       content: '”';
       position: absolute;
@@ -2309,7 +2158,6 @@
       flex-shrink: 0;
     }
 
-    /* ─── CTA SECTION ─────────────────────────────────── */
     .cta-section {
       width: 100%;
       height: 420px;
@@ -2336,12 +2184,8 @@
       font-style: normal;
     }
 
-    /* ─── FAQ ─────────────────────────────────────────── */
     .faq {
       width: 100%;
-      /* Bottom padding kept small on purpose — the footer right after
-         already has its own top padding, so a big value here just
-         doubled up into a huge dead-white gap between the two sections. */
       padding: 20px 0 0px;
       background: var(--bg);
       border-top: 1px solid var(--ink-10);
@@ -2399,17 +2243,11 @@
       gap: 10px;
     }
 
-    /* Each item is its own little two-message exchange: question bubble
-       on the left (mirrors .chat-bubble--golem from the hero), answer
-       bubble on the right (mirrors .chat-bubble--client) once opened.
-       The +/- toggle sits outside the bubble, not inside it — a plain
-       small glyph next to the message, not a filled button. */
     .faq-item {
       display: flex;
       flex-direction: column;
     }
 
-    /* ── Question row — bubble + toggle, both pinned left as one unit ── */
     .faq__question {
       align-self: flex-start;
       display: inline-flex;
@@ -2449,7 +2287,6 @@
       color: #FFFFFF;
     }
 
-    /* Minimal toggle glyph, no circle/fill — just sits beside the bubble */
     .faq__icon {
       flex-shrink: 0;
       display: flex;
@@ -2470,21 +2307,12 @@
       color: var(--yellow-dark);
     }
 
-    /* ── Answer bubble — pinned right, same visual language as the hero
-       chat mockup's client message (dark-adjacent tail, sparkle badge
-       from Golem carried over since it's still Golem answering) ── */
     .faq__answer-wrap {
       align-self: flex-end;
       max-width: 88%;
       overflow: hidden;
       max-height: 0;
       opacity: 0;
-      /* Top padding: a bit of breathing room between the question bubble
-         above and this answer. Bottom/right clearance so the badge below —
-         which pokes -10px out of .faq__answer's own corner — has room to
-         fully show before it hits this wrapper's clipped edge (needed for
-         the max-height transition to work at all). Both are picked up
-         automatically by the scrollHeight-based open/close JS. */
       padding: 10px 14px 14px 0;
       transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
     }
@@ -2518,7 +2346,6 @@
       filter: drop-shadow(0 2px 6px rgba(29, 28, 27, 0.25));
     }
 
-    /* ─── FOOTER ──────────────────────────────────────── */
     .footer {
       width: 100%;
       background: #FFFFFF;
@@ -2539,24 +2366,9 @@
       z-index: 1;
       pointer-events: none;
       overflow: hidden;
-      /* no right offset: box shrink-wraps to the text's own width so the
-         cursor percentage below lines up with the actual glyphs on screen */
       max-width: calc(100% - 60px);
     }
 
-    /* Logo rendered as an INLINE SVG instead of a CSS mask-image. Two
-       earlier attempts using `mask-image: url('logo-mask.svg')` (one
-       combining two masks with mask-composite, one splitting base/spotlight
-       into separate masked elements) both rendered nothing at all — CSS
-       box-masking with an *external* SVG file turned out to be unreliable
-       here (over-constrained absolutely-positioned box fighting its own
-       width/aspect-ratio, luminance vs. alpha ambiguity, mask-composite
-       support). This version drops CSS masking entirely: the same outline
-       paths from logo-mask.svg are drawn twice as plain inline <path>
-       strokes inside one <svg> — once in a faint fixed color (always
-       visible), once with a gradient stroke whose center is moved by JS
-       on mousemove. No external file to fail to load, no CSS mask spec
-       edge cases — just ordinary SVG stroke rendering. */
     .footer__huge-logo-svg {
       display: block;
       width: clamp(220px, 46vw, 820px);
@@ -2565,21 +2377,6 @@
       overflow: visible;
     }
 
-    /* Base layer — the permanent outline. Styled by #id, not by class:
-       the spotlight layer below is a <use> clone of this same <g>, and
-       SVG <use> copies the referenced element's `class` attribute into
-       its shadow instance (but not its `id`, which must stay unique). A
-       class-based rule here would win inside that clone too — directly
-       -matched beats inherited — and silently override the gradient
-       stroke meant for the spotlight, making the hover state invisible
-       (identical grey drawn on grey).
-       Two states, toggled by JS once the one-time "draw-in" animation
-       finishes (see the "FOOTER LOGO DRAW-IN" script): while drawing,
-       a bolder --ink-60 stroke so the stroke-dashoffset reveal reads
-       clearly; once drawn, it settles to the original faint grey
-       watermark weight. Color only turns brand yellow on hover, via the
-       separate .footer__huge-logo-spotlight reveal layer below — this
-       base layer stays grey at all times. */
     #footerHugeLogoOutline {
       stroke: var(--ink-60);
       stroke-width: 6;
@@ -2591,26 +2388,10 @@
       stroke-width: 5;
     }
 
-    /* Individual path draw-in: each path gets its own stroke-dasharray/
-       stroke-dashoffset (exact length, via getTotalLength()) set inline
-       by JS, then transitions dashoffset back to 0 when the footer
-       scrolls into view — the logo "draws itself" once. If JS never
-       runs (disabled, or prefers-reduced-motion), no inline dasharray
-       is ever set, so paths simply render solid immediately — safe
-       progressive-enhancement fallback, not an all-or-nothing animation. */
     #footerHugeLogoOutline path {
       transition: stroke-dashoffset 1.3s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Reveal layer — cursor-following brand-gradient version of the logo,
-       shown only within a crisp ~170px circle around the cursor. Two
-       separate gradients do the two jobs: a fixed linear brand gradient
-       paints the color (doesn't move), while a moving radial gradient
-       drives an SVG <mask> that reveals it near the cursor (mask center
-       kept in sync with the pointer, in SVG user-space units, by the
-       "FOOTER HOVER TEXT" script). Both gradients and the mask live
-       inside this same inline <svg> — no external file, no CSS
-       mask-image — which is what made the very first version fail. */
     .footer__huge-logo-spotlight {
       stroke: url(#footerLogoBrandGradient);
       opacity: 0;
@@ -2840,14 +2621,8 @@
       color: var(--ink);
     }
 
-    /* ═══════════════════════════════════════════════════════
-       MOBILE / RESPONSIVE
-       Desktop layout (everything above) is untouched above
-       these breakpoints — these rules only kick in below them.
-    ═══════════════════════════════════════════════════════ */
     @media (max-width: 900px) {
 
-      /* ── Nav → hamburger dropdown ── */
       .nav {
         padding: 0 20px;
       }
@@ -2899,7 +2674,6 @@
         display: flex;
       }
 
-      /* ── Hero: stack instead of side-by-side ── */
       .hero {
         flex-direction: column;
         height: auto;
@@ -2917,9 +2691,6 @@
       }
 
       .hero__right {
-        /* No fixed height on mobile — the box needs to fully contain the
-           chat conversation, whatever its length turns out to be, instead
-           of clipping/overflowing at a height tuned for the desktop panel */
         height: auto;
         padding: 44px 20px 56px;
         border-top-right-radius: 0;
@@ -2939,14 +2710,10 @@
         max-width: 100%;
       }
 
-      /* Floating tool icons are a nice desktop flourish but just clutter
-         a narrow, stacked hero — drop them on mobile entirely. */
       .chat-icon {
         display: none;
       }
 
-      /* Hair-clip corner decorations: shrink to match the now much
-         smaller hero__right panel instead of using the desktop size. */
       .grid-clip--top-left {
         top: -18px;
         left: -4px;
@@ -2961,7 +2728,6 @@
         width: 17px;
       }
 
-      /* ── Walkthrough: stack steps above the screen mock ── */
       .features-section {
         flex-direction: column;
         height: auto;
@@ -2990,7 +2756,6 @@
         max-width: 100%;
       }
 
-      /* ── Showcase: tighter frame on narrow screens ── */
       .showcase {
         padding: 64px 0 72px;
       }
@@ -3000,7 +2765,6 @@
         border-radius: 24px;
       }
 
-      /* ── FAQ: tighter spacing, narrower answer bubbles ── */
       .faq {
         padding: 56px 0 40px;
       }
@@ -3028,7 +2792,6 @@
         max-width: 96%;
       }
 
-      /* ── Footer: stack the columns ── */
       .footer {
         padding: 64px 24px 40px;
       }
@@ -3047,8 +2810,6 @@
         max-width: 420px;
       }
 
-      /* Center the watermark instead of anchoring it to the left edge —
-         on the narrower mobile footer that made it run off-screen. */
       .footer__huge-text {
         left: 50%;
         transform: translateX(-50%);
@@ -3105,10 +2866,8 @@
 
 <body>
 
-  <!-- ══ HERO & NAV WRAPPER ════════════════════════════════ -->
   <section class="hero-section">
 
-    <!-- ══ NAV ══════════════════════════════════════════════ -->
     <nav class="nav" id="siteNav">
       <a href="#" class="nav__logo">
         <img src="logo.png" alt="Goleme Logo" class="logo-img" />
@@ -3138,7 +2897,6 @@
       </button>
     </nav>
 
-    <!-- ══ HERO ══════════════════════════════════════════════ -->
     <div class="hero">
       <div class="hero__left">
         <h1 class="hero__title">Vlasy za vás<br />neuděláme,<br />stránky ano!</h1>
@@ -3152,34 +2910,27 @@
         </div>
       </div>
       <div class="hero__right">
-        <!-- Hair clips holding the grid corners -->
         <img src="hair-clip.png" alt="Hair clip decor" class="grid-clip grid-clip--top-left" />
         <img src="hair-clip.png" alt="Hair clip decor" class="grid-clip grid-clip--bottom-right" />
 
-        <!-- Floating icons scattered across the grid -->
         <i class="fa-solid fa-scissors chat-icon icon-1"></i>
         <i class="fa-solid fa-spray-can chat-icon icon-2"></i>
         <i class="fa-regular fa-calendar-check chat-icon icon-3"></i>
         <i class="fa-regular fa-comments chat-icon icon-4"></i>
 
-        <!-- Chat Conversation between Client & Golem -->
         <div class="chat-container">
-          <!-- Message 1: Client -->
           <div class="chat-bubble chat-bubble--client">
             Ahoj golem, nově jsem otevřela salon, kde děláme keratinovou léčbu a specializujeme se na kudrnaté vlasy.
           </div>
 
-          <!-- Message 2: Golem -->
           <div class="chat-bubble chat-bubble--golem">
             Jasný! Dej mi 5 minut, už na tom pracuji.
           </div>
 
-          <!-- Message 3: Client -->
           <div class="chat-bubble chat-bubble--client">
             Super! Přidej tam také prosím otvírací dobu, sídlím v Praze.
           </div>
 
-          <!-- Message 4: Golem -->
           <div class="chat-bubble chat-bubble--golem">
             Všechno je hotové. Podívej se na náhled.
             <a href="#" class="chat-bubble__preview">
@@ -3191,7 +2942,6 @@
       </div>
     </div>
 
-    <!-- ══ LOGOS STRIP ════════════════════════════════════════ -->
     <div class="logos">
       <div class="logos__inner">
         <span class="logos__label">Sílu golema už vyzkoušeli</span>
@@ -3207,7 +2957,6 @@
     </div>
 
 
-    <!-- ══ FEATURE CARDS ═════════════════════════════════════ -->
     <div class="feature-cards-wrapper">
       <div class="feature-cards-grid">
         <div class="feature-card">
@@ -3237,11 +2986,9 @@
       </div>
     </div>
 
-    <!-- ══ WALKTHROUGH SECTION ══════════════════════════════ -->
     <div class="features-section-wrapper">
       <section class="features-section" id="wt-section">
 
-        <!-- LEFT: Step navigation -->
         <div class="wt-steps" id="wt-steps">
 
           <div class="wt-steps__intro">
@@ -3249,7 +2996,6 @@
             <h3 class="wt-steps__heading">Váš web vznikne <em>ve třech krocích.</em></h3>
           </div>
 
-          <!-- Step 1 -->
           <div class="wt-step is-active" data-step="0" id="wt-step-0">
             <div class="wt-step__num">1</div>
             <div class="wt-step__body">
@@ -3258,7 +3004,6 @@
             </div>
           </div>
 
-          <!-- Step 2 -->
           <div class="wt-step" data-step="1" id="wt-step-1">
             <div class="wt-step__num">2</div>
             <div class="wt-step__body">
@@ -3267,7 +3012,6 @@
             </div>
           </div>
 
-          <!-- Step 3 -->
           <div class="wt-step" data-step="2" id="wt-step-2">
             <div class="wt-step__num">3</div>
             <div class="wt-step__body">
@@ -3278,28 +3022,17 @@
 
         </div>
 
-        <!-- CENTER: Animated SVG path with travelling dot -->
         <svg class="wt-curve" viewBox="0 0 80 700" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-          <!-- Primary wavy path -->
           <path d="M38,0 C38,80 12,180 18,280 C24,380 56,460 44,580 C36,660 38,700 38,700"
                 stroke="#1D1C1B" stroke-width="1.5" stroke-opacity="0.15" />
-          <!-- Secondary faint shadow path -->
           <path d="M44,0 C44,80 18,180 24,280 C30,380 62,460 50,580 C42,660 44,700 44,700"
                 stroke="#1D1C1B" stroke-width="0.8" stroke-opacity="0.06" />
-          <!-- Travelling dot — cy is animated by JS -->
           <circle id="wt-dot" cx="38" cy="117" r="7" fill="#1D1C1B" />
-          <!-- tick marks at each phase y-position -->
-
-          <!-- <line x1="24" y1="117" x2="52" y2="117" stroke="#1D1C1B" stroke-width="1" stroke-opacity="0.10" />
-          <line x1="24" y1="350" x2="52" y2="350" stroke="#1D1C1B" stroke-width="1" stroke-opacity="0.10" />
-          <line x1="24" y1="580" x2="52" y2="580" stroke="#1D1C1B" stroke-width="1" stroke-opacity="0.10" /> -->
         </svg>
 
-        <!-- RIGHT: The animated screen -->
         <div class="wt-screen-col">
           <div class="wt-screen">
 
-            <!-- Browser chrome -->
             <div class="wt-screen__chrome">
               <div class="wt-screen__dot wt-screen__dot--red"></div>
               <div class="wt-screen__dot wt-screen__dot--yel"></div>
@@ -3307,13 +3040,10 @@
               <div class="wt-screen__url" id="wt-url">goleme.ai/chat</div>
             </div>
 
-            <!-- Body — 3 phases stacked -->
             <div class="wt-screen__body">
 
-              <!-- PHASE 1: Chat Interface -->
               <div class="wt-phase is-visible" id="wt-phase-0">
                 <div class="wt-chat" id="wt-chat">
-                  <!-- Bubbles are injected by JS -->
                 </div>
                 <div class="wt-chat__input-row">
                   <div class="wt-chat__input" id="wt-chat-input"></div>
@@ -3325,7 +3055,6 @@
                 </div>
               </div>
 
-              <!-- PHASE 2: Skeleton — exact structural mirror of phase 3, grey shimmer overlay -->
               <div class="wt-phase" id="wt-phase-1">
                 <div class="wt-website wt-website--skel" id="wt-skeleton">
 
@@ -3378,10 +3107,8 @@
                 </div>
               </div>
 
-              <!-- PHASE 3: Polished Website -->
               <div class="wt-phase" id="wt-phase-2">
                 <div class="wt-website" id="wt-website">
-                  <!-- Fake nav -->
                   <div class="wt-website__nav">
                     <span class="wt-website__nav-brand">LUXE CUTS</span>
                     <div class="wt-website__nav-links">
@@ -3391,7 +3118,6 @@
                     </div>
                     <div class="wt-website__nav-cta">Rezervovat</div>
                   </div>
-                  <!-- Fake hero -->
                   <div class="wt-website__hero">
                     <div class="wt-website__hero-text">
                       <h2>Váš salon,<br/>online za minuty.</h2>
@@ -3399,7 +3125,6 @@
                     </div>
                     <div class="wt-website__hero-btn"><i class="fa-regular fa-calendar" style="margin-right:6px;"></i> Objednat se</div>
                   </div>
-                  <!-- Services and gallery -->
                   <div class="wt-website__body">
                     <div class="wt-website__services-grid">
                       <div class="wt-service-card">
@@ -3430,26 +3155,23 @@
                 </div>
               </div>
 
-            </div><!-- /wt-screen__body -->
-          </div><!-- /wt-screen -->
-        </div><!-- /wt-screen-col -->
+            </div>
+          </div>
+        </div>
 
       </section>
     </div>
   </section>
 
-  <!-- ══ SHOWCASE ═══════════════════════════════════════════ -->
   <section class="showcase">
 
 
     <div class="showcase__frame">
       <div class="mosaic">
 
-        <!-- ROW 1 · scrolls left → right -->
         <div class="mosaic__row mosaic__row--right">
           <div class="mosaic__track">
 
-            <!-- Set A -->
             <div class="tile sky">
               <div class="chrome">
                 <div class="dot"></div>
@@ -3513,7 +3235,6 @@
               </div>
             </div>
 
-            <!-- Set B (duplicate, for the seamless loop) -->
             <div class="tile sky" aria-hidden="true">
               <div class="chrome">
                 <div class="dot"></div>
@@ -3580,11 +3301,9 @@
           </div>
         </div>
 
-        <!-- ROW 2 · scrolls right → left -->
         <div class="mosaic__row mosaic__row--left">
           <div class="mosaic__track">
 
-            <!-- Set A -->
             <div class="tile light">
               <div class="chrome">
                 <div class="dot"></div>
@@ -3650,7 +3369,6 @@
               </div>
             </div>
 
-            <!-- Set B (duplicate, for the seamless loop) -->
             <div class="tile light" aria-hidden="true">
               <div class="chrome">
                 <div class="dot"></div>
@@ -3719,11 +3437,9 @@
           </div>
         </div>
 
-        <!-- ROW 3 · scrolls left → right -->
         <div class="mosaic__row mosaic__row--right">
           <div class="mosaic__track">
 
-            <!-- Set A -->
             <div class="tile light">
               <div class="chrome">
                 <div class="dot"></div>
@@ -3787,7 +3503,6 @@
               </div>
             </div>
 
-            <!-- Set B (duplicate, for the seamless loop) -->
             <div class="tile light" aria-hidden="true">
               <div class="chrome">
                 <div class="dot"></div>
@@ -3854,35 +3569,12 @@
           </div>
         </div>
 
-        <!-- FLOATING PILL -->
-        <!--
-        <div class="pill">
-          <span class="pill__count">500k+</span>
-          <span class="pill__text">Websites built with Goleme</span>
-        </div>
-        -->
-
       </div>
     </div>
   </section>
 
-  <!-- ══ TRANSITION CTA ════════════════════════════════════ -->
-  <!--
-  <section class="transition-cta">
-    <div class="transition-cta__content">
-      <p class="transition-cta__quote">„Nejlepší čas začít byl včera.“</p>
-      <h2 class="transition-cta__heading">
-        <span class="transition-cta__lead">Ten další je</span>
-        <span class="transition-cta__accent">dnes</span>
-      </h2>
-    </div>
-  </section>
-  -->
-
-  <!-- ══ TESTIMONIALS ═══════════════════════════════════════ -->
   <section class="testimonials">
     <div class="testimonials__grid">
-      <!-- Card 1 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -3898,7 +3590,6 @@
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -3914,7 +3605,6 @@
         </div>
       </div>
 
-      <!-- Card 3 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -3931,7 +3621,6 @@
         </div>
       </div>
 
-      <!-- Card 4 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -3947,7 +3636,6 @@
         </div>
       </div>
 
-      <!-- Card 5 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -3962,7 +3650,6 @@
         </div>
       </div>
 
-      <!-- Card 6 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -3979,7 +3666,6 @@
         </div>
       </div>
 
-      <!-- Card 7 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -3995,7 +3681,6 @@
         </div>
       </div>
 
-      <!-- Card 8 -->
       <div class="tcard-wrap">
         <img src="hair-clip.png" alt="" class="tcard-pin" />
         <div class="tcard">
@@ -4013,13 +3698,10 @@
     </div>
   </section>
 
-  <!-- ══ FAQ ════════════════════════════════════════════════ -->
   <section class="faq" id="faq">
     <div class="faq__inner">
       <div class="faq__header">
-        <!-- <span class="faq__eyebrow">FAQ</span> -->
         <h2 class="faq__heading">Máte otázku? <em>Možná ji měl</em><br />už někdo před vámi.</h2>
-        <!-- <p class="faq__timestamp">Golem is online, 24/7</p> -->
       </div>
 
       <div class="faq__list">
@@ -4100,25 +3782,14 @@
 
 
 
-  <!-- ══ FOOTER ═════════════════════════════════════════════ -->
   <footer class="footer">
     <div class="footer__huge-text" id="footerHugeText">
       <svg class="footer__huge-logo-svg" viewBox="0 0 1693 471" role="img" aria-label="Goleme" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <!-- Fixed brand-yellow paint for the reveal layer — does not
-               move with the cursor, just colors the logo (--yellow to
-               --yellow-dark, a touch of depth without leaving yellow). -->
           <linearGradient id="footerLogoBrandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#fcd032"/>
             <stop offset="100%" stop-color="#D4A910"/>
           </linearGradient>
-          <!-- Moving reveal circle — white/black stops feed an SVG <mask>
-               below (masks use luminance by default: white = visible,
-               black = hidden). Kept mostly white until 80% for a crisp
-               near-hard edge instead of the soft glow the first version
-               had. cx/cy/r are updated on mousemove by the
-               "FOOTER HOVER TEXT" script, in the same 1693×471 user-space
-               units as the logo paths themselves. -->
           <radialGradient id="footerRevealMaskGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="150">
             <stop offset="0%" stop-color="#fff"/>
             <stop offset="80%" stop-color="#fff"/>
@@ -4136,17 +3807,6 @@
           <path d="M126.017 97.6698C135.779 97.6699 145.239 98.8086 154.39 101.096C163.517 103.377 171.885 106.65 179.471 110.933L179.489 110.944L179.509 110.954C187.225 115.139 194.179 119.824 200.357 125.017L203.331 127.517L204.374 123.776C207.747 111.689 218.84 102.853 231.967 102.852H236.287C254.534 102.853 269.325 117.641 269.325 135.884V338.474C269.325 358.995 266.279 377.285 260.082 393.266C253.909 409.181 244.945 422.739 233.178 433.871L233.165 433.883L233.153 433.894C221.362 445.356 207.144 453.84 190.576 459.369L190.537 459.383C173.987 465.215 155.288 468.092 134.5 468.092C115.521 468.092 96.5635 465.194 77.6406 459.423L77.6133 459.415L77.5947 459.409C66.7584 456.045 57.0503 452.062 48.4961 447.438C36.4287 440.916 33.479 426.277 38.79 414.654L39.0498 414.103L40.4248 411.26C47.4176 396.801 65.3565 392.76 79.1533 398.596C87.0454 401.933 95.4096 404.522 104.253 406.351L104.262 406.352L104.27 406.354C113.422 408.183 122.398 409.092 131.2 409.092C147.424 409.092 160.554 406.487 170.793 401.516L170.801 401.512L170.81 401.508L170.864 401.479L170.917 401.457L170.925 401.454C181.378 396.809 189.127 389.618 194.32 379.81L194.319 379.809L194.333 379.788L194.346 379.764C199.561 370.203 202.304 357.93 202.304 342.715V331.664L198.129 335.428C190.292 342.495 180.984 348.428 170.255 353.25L169.213 353.713L169.182 353.725L169.165 353.733L169.13 353.747C155.746 359.296 141.993 362.085 127.901 362.085C104.023 362.085 82.6473 356.593 63.8994 345.51L63.0088 344.977L63.0068 344.976L63.0039 344.974L62.9824 344.961L62.9805 344.96C44.435 333.574 29.636 318.116 18.6084 298.659L18.6045 298.653L18.6016 298.646L18.5898 298.626L18.583 298.613L18.5762 298.599L18.5684 298.586L18.0684 297.652C7.65227 278.005 2.50003 255.612 2.5 230.584L2.50391 229.394C2.66744 204.45 7.98492 182.142 18.5684 162.582L18.5723 162.575L18.5762 162.567C29.2818 142.474 43.9298 126.672 62.5088 115.266L62.5186 115.26C81.1549 103.701 101.993 97.8535 124.924 97.6737L126.017 97.6698ZM136.855 157.14C123.45 157.14 111.871 160.404 101.961 166.815L101.938 166.831L101.926 166.838L101.919 166.843L101.901 166.852L101.885 166.863C91.9053 173.026 83.9357 181.699 77.9824 193.008L77.9756 193.019L77.9697 193.032C72.3785 203.945 69.5225 216.583 69.5225 231.055C69.5225 245.175 72.3639 257.819 77.9668 269.068L77.9854 269.107L78.0068 269.145C83.9472 280.101 91.903 288.611 101.885 294.775C111.805 300.901 123.413 304.028 136.855 304.028C150.292 304.028 161.893 300.903 171.811 294.783L171.836 294.769L171.854 294.758L171.874 294.747C182.168 288.571 190.098 280.064 195.707 269.141L195.708 269.141C201.321 258.215 204.189 245.555 204.189 231.055C204.189 216.259 201.172 203.476 195.28 192.579L195.273 192.566L195.25 192.523L195.217 192.457C189.757 181.541 182.27 173.085 172.753 166.976L171.825 166.392C161.905 160.267 150.298 157.14 136.855 157.14Z"/>
           <path d="M655.813 2.5C674.322 2.5002 689.325 17.501 689.325 36.0039V326.226C689.325 344.728 674.322 359.729 655.813 359.729C637.305 359.729 622.301 344.728 622.301 326.226V36.0039C622.301 17.79 636.84 2.96953 654.948 2.51074L655.813 2.5Z"/>
         </g>
-        <!-- Reveal layer — a real, independent copy of the same 6 paths
-             (not a <use> clone). An earlier version referenced the base
-             <g> via <use stroke="url(#...)" mask="url(#...)">, which is
-             exactly the combination (paint server + mask applied to a
-             <use> shadow instance) that has a history of resolving
-             inconsistently in WebKit/Safari — it rendered as a plain
-             grey duplicate instead of the yellow gradient. Two real
-             paths cost a little duplication (update both copies if the
-             logo shape ever changes) but every part of the rendering —
-             plain paths, a plain gradient, a plain mask — is the most
-             basic, universally-supported combination there is. -->
         <g class="footer__huge-logo-spotlight" fill="none" stroke-width="5" mask="url(#footerLogoRevealMask)">
           <path d="M442.996 95.3413C475.809 95.3195 507.719 106.144 533.81 126.148C559.9 146.153 578.72 174.228 587.367 206.046C596.015 237.866 594.009 271.659 581.658 302.218C574.064 321.007 562.82 337.931 548.714 352.073C535.263 365.557 513.182 360.216 503.069 342.974C493.192 326.131 499.778 304.116 510.458 286.205L510.459 286.206C512.265 283.178 513.873 280.018 515.269 276.748L515.854 275.339C522.335 259.3 523.389 241.565 518.85 224.866C514.311 208.165 504.432 193.427 490.733 182.923C477.035 172.419 460.277 166.735 443.043 166.747C425.808 166.758 409.058 172.466 395.373 182.988C381.688 193.51 371.828 208.263 367.312 224.968C362.797 241.673 363.874 259.408 370.378 275.439C371.908 279.21 373.719 282.837 375.786 286.294C386.49 304.192 393.106 326.2 383.252 343.055C373.163 360.31 351.089 365.68 337.62 352.214C323.495 338.092 312.227 321.183 304.608 302.406C292.217 271.863 290.164 238.071 298.77 206.241C307.374 174.41 326.159 146.311 352.222 126.272C378.285 106.232 410.183 95.3635 442.996 95.3413ZM443.096 220.185C457.225 220.185 468.68 231.637 468.681 245.763C468.681 259.889 457.226 271.341 443.096 271.341C428.965 271.341 417.513 259.889 417.512 245.763C417.512 231.638 428.965 220.185 443.096 220.185Z"/>
           <path d="M1316.34 98.6119C1335.75 98.6119 1352.27 102.493 1365.67 110.531C1379.14 118.61 1389.13 130.854 1395.72 146.983V146.984C1402.28 163.038 1405.45 182.63 1405.45 205.614V326.225C1405.45 344.729 1390.46 359.728 1371.95 359.729C1353.44 359.729 1338.44 344.728 1338.44 326.225V209.383C1338.44 197.171 1336.75 187.424 1333.59 179.959L1333.58 179.944L1333.58 179.94L1333.57 179.891L1333.54 179.826C1330.71 172.498 1326.32 167.379 1320.41 164.153L1320.29 164.081L1320.14 163.997C1314.41 160.465 1306.94 158.552 1297.5 158.552C1290.4 158.552 1283.6 159.786 1277.07 162.254L1276.44 162.497L1276.37 162.523L1276.34 162.535L1276.31 162.547L1276.29 162.554C1269.97 164.86 1264.56 168.29 1260 172.842L1259.94 172.898L1259.9 172.945C1255.28 177.268 1251.69 182.297 1249.1 188.057C1246.54 193.735 1245.24 200.038 1245.24 207.027V326.225C1245.24 344.728 1230.24 359.728 1211.72 359.729C1193.22 359.729 1178.21 344.728 1178.21 326.225V208.913C1178.21 197.357 1176.54 188.098 1173.4 180.96L1173.37 180.89L1173.34 180.824L1173.33 180.804C1170.18 173.403 1165.72 168.064 1160.02 164.528L1159.96 164.487L1159.93 164.467L1159.8 164.384C1154.05 160.568 1146.92 158.552 1138.22 158.552C1130.89 158.552 1124.06 159.867 1117.69 162.472L1117.62 162.504L1117.52 162.539C1111.13 164.866 1105.67 168.183 1101.1 172.467H1101.1C1096.49 176.791 1092.89 181.821 1090.3 187.587C1087.74 193.264 1086.43 199.567 1086.43 206.556V326.225C1086.43 344.728 1071.43 359.729 1052.92 359.729C1034.42 359.729 1019.41 344.728 1019.41 326.225V135.919C1019.41 117.657 1034.22 102.852 1052.49 102.852C1067.55 102.852 1080.3 112.936 1084.27 126.773L1085.44 130.847L1088.44 127.852C1092.77 123.528 1097.57 119.674 1102.84 116.297L1102.87 116.279L1102.89 116.261C1111.01 110.753 1119.63 106.521 1128.75 103.577L1128.78 103.565L1128.82 103.553C1138.05 100.265 1147.47 98.612 1157.06 98.6119C1171.01 98.6119 1183.52 100.878 1194.5 105.523L1194.54 105.539L1194.58 105.553C1205.89 109.911 1215.26 116.938 1222.6 126.582L1222.61 126.601L1222.63 126.622C1225.55 130.302 1228.16 134.348 1230.49 138.75L1232.28 142.15L1234.66 139.13C1236.8 136.41 1239.17 133.818 1241.76 131.359L1241.78 131.338L1241.8 131.316C1248.29 124.844 1255.58 119.181 1263.65 114.333L1263.68 114.315L1263.71 114.297C1271.85 109.106 1280.34 105.188 1289.17 102.566L1289.19 102.562L1289.23 102.551L1289.26 102.543C1298.4 99.9307 1307.43 98.6119 1316.34 98.6119Z"/>
@@ -4158,20 +3818,12 @@
       </svg>
     </div>
     <div class="footer__top">
-      <!-- Left Side: Brand description and web badges -->
       <div class="footer__brand-col">
         <p class="footer__desc">
           Založit si svůj salón/barbershop je dost náročné samo o sobě a ještě k tomu rešit webovou identitu je úkon skoro až nadlidský. Ještě že jste nás našli.
         </p>
-        <!--
-        <div class="footer__badges">
-          <span class="footer__badge-label">Available on Web</span>
-          <div class="footer__badge-icon"><i class="fa-solid fa-globe"></i> Chrome, Safari &amp; Firefox</div>
-        </div>
-        -->
       </div>
 
-      <!-- Links Column -->
       <div class="footer__links-col">
         <span class="footer__section-title">Odkazy</span>
         <ul class="footer__col-list">
@@ -4182,7 +3834,6 @@
         </ul>
       </div>
 
-      <!-- Contact & Social Column -->
       <div class="footer__contact-col">
         <span class="footer__section-title">Kontaktujte nás</span>
         <div class="footer__contact-info" style="margin-top: 8px;">
@@ -4197,7 +3848,6 @@
         </div>
       </div>
 
-      <!-- Newsletter Column (keep bottom right / right side) -->
       <div class="footer__newsletter-col">
         <span class="footer__section-title">Newsletter</span>
         <p class="footer__newsletter-desc" style="margin: 4px 0 0;">Přihlaste se k odběru novinek o šablonách a produktu.</p>
@@ -4207,8 +3857,6 @@
         </div>
       </div>
     </div>
-
-    <!--<div class="footer__divider"></div> -->
 
     <div class="footer__bottom">
       <div></div>
@@ -4222,32 +3870,24 @@
     </div>
   </footer>
 
-  <!-- ══ WALKTHROUGH ANIMATION ENGINE ══════════════════════ -->
   <script>
   (function () {
     'use strict';
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       CONFIG
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    /* Duration for each phase in ms — adjust independently */
-    var PHASE_DURATIONS  = [8000, 5200, 5200]; // phase 0 (chat) is longer
+    var PHASE_DURATIONS  = [8000, 5200, 5200];
     var TOTAL_PHASES     = PHASE_DURATIONS.length;
-    /* Cumulative start time of each phase */
     var PHASE_STARTS     = (function() {
       var s = [0];
       for (var i = 1; i < TOTAL_PHASES; i++) s.push(s[i-1] + PHASE_DURATIONS[i-1]);
       return s;
     }());
     var ACTIVE_DURATION  = PHASE_STARTS[TOTAL_PHASES-1] + PHASE_DURATIONS[TOTAL_PHASES-1];
-    var RETURN_DURATION  = 1100;   // ms for invisible return-to-top
+    var RETURN_DURATION  = 1100;
     var CYCLE_DURATION   = ACTIVE_DURATION + RETURN_DURATION;
 
-    /* Dot Y positions in the 700-unit SVG viewport */
     var DOT_Y_TOP = 117;
     var DOT_Y_BOT = 580;
 
-    /* Approximate cx values along the wavy path for a given cy */
     var PATH_KF = [
       { cy:   0, cx: 38 }, { cy: 117, cx: 27 }, { cy: 200, cx: 20 },
       { cy: 280, cx: 18 }, { cy: 350, cx: 24 }, { cy: 430, cx: 38 },
@@ -4261,9 +3901,6 @@
       { type: 'ai',   text: 'Super! Dám ti šablonu s rezervacemi, galerií a ceníkem. Spustím stavbu.' }
     ];
 
-    /* Palette choices offered in the post-reply picker. 'amber' is the
-       default (matches the site's own brand yellow) and is also what
-       gets applied if the 5s decision window times out. */
     var PALETTES = [
       { key: 'amber',  swatch: '#fcd032' },
       { key: 'indigo', swatch: '#818CF8' },
@@ -4271,16 +3908,10 @@
     ];
     var DEFAULT_THEME = { mode: 'light', palette: 'amber' };
     var DECISION_MS = 5000;
-    /* Remembered across the whole life of the page (not per-cycle) once
-       the visitor decides once — see the "Opakování" choice: subsequent
-       loops skip the picker and jump straight to this theme. */
     var chosenTheme = null;
 
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       DOM REFS
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     var dot        = document.getElementById('wt-dot');
     var urlBar     = document.getElementById('wt-url');
     var phases     = [0,1,2].map(function(i){ return document.getElementById('wt-phase-'+i); });
@@ -4295,11 +3926,6 @@
 
     if (!dot || !chatEl) return;
 
-    /* Apply a {mode, palette} theme to both phase 1 (skeleton) and phase 2
-       (final site) at once — they share the same .wt-website markup, and
-       both read the accent color from the .wt-screen-scoped --wt-accent
-       custom property, so one class swap on the shared ancestor covers
-       both phases automatically. */
     function applyTheme(theme) {
       if (!screenEl) return;
       screenEl.classList.toggle('wt-theme-dark', theme.mode === 'dark');
@@ -4307,9 +3933,6 @@
       screenEl.classList.add('wt-palette-' + theme.palette);
     }
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       MATH HELPERS
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     function lerp(a, b, t) { return a + (b - a) * t; }
 
     function easeInOutSine(t) {
@@ -4320,7 +3943,6 @@
       return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
     }
 
-    /* Get cx by linear interpolation through the path keyframes */
     function getCx(cy) {
       for (var i = 0; i < PATH_KF.length - 1; i++) {
         var a = PATH_KF[i], b = PATH_KF[i+1];
@@ -4331,12 +3953,6 @@
       return 38;
     }
 
-    /*
-      Returns {cy, cx, opacity} for a given elapsed ms within the cycle.
-      ─ Active portion: dot glides between per-phase Y waypoints via easeInOutSine
-      ─ Return portion: dot fades out, teleports to top, fades in
-    */
-    /* Y waypoints at the start of each phase (must match SVG tick marks) */
     var DOT_Y_PHASES = [117, 350, 580];
 
     function dotState(t) {
@@ -4344,21 +3960,20 @@
         var ph   = phaseAt(t);
         var pStart = PHASE_STARTS[ph];
         var pDur   = PHASE_DURATIONS[ph];
-        var p      = (t - pStart) / pDur; // 0..1 within phase
+        var p      = (t - pStart) / pDur;
         var yFrom  = DOT_Y_PHASES[ph];
         var yTo    = ph < TOTAL_PHASES - 1 ? DOT_Y_PHASES[ph + 1] : DOT_Y_PHASES[ph];
         var cy     = lerp(yFrom, yTo, easeInOutSine(p));
         return { cy: cy, cx: getCx(cy), opacity: 1 };
       }
-      var rp  = (t - ACTIVE_DURATION) / RETURN_DURATION; // 0..1
+      var rp  = (t - ACTIVE_DURATION) / RETURN_DURATION;
       var cy  = DOT_Y_TOP;
-      var op  = rp < 0.3  ? lerp(1, 0, rp / 0.3)        // fade out
-              : rp > 0.7  ? lerp(0, 1, (rp - 0.7) / 0.3) // fade in
-              : 0;                                          // invisible
+      var op  = rp < 0.3  ? lerp(1, 0, rp / 0.3)
+              : rp > 0.7  ? lerp(0, 1, (rp - 0.7) / 0.3)
+              : 0;
       return { cy: cy, cx: getCx(cy), opacity: op };
     }
 
-    /* Which phase index is live at elapsed t? */
     function phaseAt(t) {
       if (t >= ACTIVE_DURATION) return 0;
       for (var i = TOTAL_PHASES - 1; i >= 0; i--) {
@@ -4367,16 +3982,8 @@
       return 0;
     }
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       PHASE CONTROLLERS
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     var typerTimer    = null;
     var choiceTimer   = null;
-    /* When true, tick() freezes (dot stops, no phase advance) — set while
-       the interactive choice panel is waiting on the visitor or its 5s
-       timeout. pauseStart records when the freeze began (performance.now()
-       units, same clock rAF timestamps use) so resuming can shift
-       cycleStart forward by exactly how long we were paused. */
     var paused        = false;
     var pauseStart    = 0;
 
@@ -4385,12 +3992,10 @@
     }
 
     function setActivePhase(idx) {
-      /* Snap outgoing phase to invisible (transition:none), fade incoming in */
       phases.forEach(function(p, i) { p.classList.toggle('is-visible', i === idx); });
       if (urlBar) urlBar.textContent = URLS[idx];
     }
 
-    /* Phase 0 — Chat typewriter -------------------------------- */
     function runPhase0() {
       clearTimeout(typerTimer);
       chatEl.innerHTML = '';
@@ -4436,15 +4041,6 @@
       setTimeout(function(){ el.classList.add('is-shown'); }, reduceMotion ? 0 : 70);
     }
 
-    /* Runs right after the AI's second bubble finishes appearing. The
-       picker shows every single cycle — it's never skipped — but if the
-       visitor already decided in an earlier cycle, that choice is used
-       as the *preset* (switch + selected swatch start on whatever they
-       picked last time, instead of resetting to light/amber), so
-       re-deciding is a one-click confirm rather than starting over.
-       reduced-motion visitors still skip the wait entirely, same as
-       every other delay in this file — falls back to the last decided
-       theme, or the default on the very first run. */
     function handleAiReplied() {
       if (reduceMotion) {
         chosenTheme = chosenTheme || DEFAULT_THEME;
@@ -4455,10 +4051,6 @@
       showChoicePanel();
     }
 
-    /* Interactive light/dark + palette picker, built fresh each time it's
-       needed (chatEl gets wiped at the top of every runPhase0() anyway).
-       Freezes the walkthrough clock (`paused`) so the 0-5s the visitor
-       actually takes never eats into the fixed phase timeline. */
     function showChoicePanel() {
       var preset = chosenTheme || DEFAULT_THEME;
       var pendingMode    = preset.mode;
@@ -4515,7 +4107,6 @@
         chosenTheme = { mode: pendingMode, palette: palette || pendingPalette };
         applyTheme(chosenTheme);
 
-        /* Resume the frozen clock exactly where it left off. */
         paused = false;
         cycleStart += (performance.now() - pauseStart);
 
@@ -4533,7 +4124,6 @@
         s.addEventListener('click', handler);
       });
 
-      /* Freeze the walkthrough clock while we wait. */
       paused = true;
       pauseStart = performance.now();
 
@@ -4545,21 +4135,15 @@
       choiceTimer = setTimeout(function () { resolve(null); }, DECISION_MS);
     }
 
-    /* Phase 1 — Skeleton (no extra logic, shimmer always runs) --- */
     function runPhase1() {
-      /* Nothing to do — the wt-website--skel ::after overlays
-         run their shimmer animation automatically as long as
-         the phase panel is visible. */
     }
 
-    /* Phase 2 — Polished website fill reveal ------------------ */
     var revealTimer = null;
     function runPhase2() {
       clearTimeout(revealTimer);
       websiteEl.classList.remove('is-revealing');
-      void websiteEl.offsetWidth; /* reflow to restart animations */
+      void websiteEl.offsetWidth;
       websiteEl.classList.add('is-revealing');
-      /* Clean up the class after animations finish (last overlay: 0.76s delay + 0.4s duration) */
       revealTimer = setTimeout(function() {
         websiteEl.classList.remove('is-revealing');
       }, reduceMotion ? 0 : 1200);
@@ -4567,9 +4151,6 @@
 
     var phaseRunners = [runPhase0, runPhase1, runPhase2];
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       rAF LOOP  —  continuous dot movement
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     var cycleStart   = null;
     var activePhase  = -1;
     var animFrame    = null;
@@ -4577,9 +4158,6 @@
     function tick(ts) {
       if (cycleStart === null) cycleStart = ts;
 
-      /* While the choice panel is up, freeze everything in place — no dot
-         movement, no phase advance — until showChoicePanel()'s resolve()
-         shifts cycleStart forward and clears this flag. */
       if (paused) {
         animFrame = requestAnimationFrame(tick);
         return;
@@ -4587,16 +4165,13 @@
 
       var elapsed = (ts - cycleStart) % CYCLE_DURATION;
 
-      /* ── Move dot ── */
       var ds = dotState(elapsed);
       dot.setAttribute('cy',      ds.cy.toFixed(1));
       dot.setAttribute('cx',      ds.cx.toFixed(1));
       dot.setAttribute('opacity', ds.opacity.toFixed(3));
 
-      /* ── Phase transitions ── */
       var pIdx = phaseAt(elapsed);
       if (pIdx !== activePhase) {
-        /* Clean up previous phase side-effects */
         clearTimeout(typerTimer);
         clearTimeout(revealTimer);
         clearTimeout(choiceTimer);
@@ -4610,29 +4185,21 @@
       animFrame = requestAnimationFrame(tick);
     }
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       MANUAL STEP CLICK  —  jump to any phase
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     steps.forEach(function(stepEl, idx) {
       stepEl.addEventListener('click', function() {
         if (animFrame) cancelAnimationFrame(animFrame);
         clearTimeout(typerTimer);
         clearTimeout(revealTimer);
         clearTimeout(choiceTimer);
-        paused = false; // in case a manual jump interrupts an open choice panel
-        /* Reposition cycleStart so elapsed = start of target phase */
+        paused = false;
         cycleStart  = performance.now() - PHASE_STARTS[idx];
-        activePhase = -1; // force re-trigger
+        activePhase = -1;
         animFrame   = requestAnimationFrame(tick);
       });
     });
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SCROLL REVEALS (The "Juice")
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     var revealElements = document.querySelectorAll('.logos, .feature-card, .features-section-wrapper, .showcase__frame, .tcard, .faq__header, .faq-item, .footer__content, .footer__bottom');
 
-    // Add base class and calculate dynamic staggers
     var tcardIndex = 0;
     var faqIndex = 0;
     var featureCardIndex = 0;
@@ -4658,8 +4225,7 @@
           var target = entry.target;
           target.classList.add('is-revealed');
           scrollObserver.unobserve(target);
-          
-          // Cleanup classes after animation so hover states (like on .tile) work cleanly
+
           setTimeout(function() {
             target.classList.remove('wt-reveal', 'is-revealed');
             target.style.transitionDelay = '';
@@ -4672,9 +4238,6 @@
       scrollObserver.observe(el);
     });
 
-    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       START  —  kick off when section enters viewport
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     var started = false;
 
     function startWalkthrough() {
@@ -4696,7 +4259,6 @@
   })();
   </script>
 
-  <!-- ══ ANIMATED PROMPT PLACEHOLDER ═══════════════════════ -->
   <script>
     (function () {
       var promptPlaceholders = [
@@ -4726,10 +4288,10 @@
         return;
       }
 
-      var TYPE_SPEED = 45;   // ms per typed character
-      var DELETE_SPEED = 25; // ms per deleted character
-      var HOLD_TIME = 2000;  // pause once fully typed
-      var GAP_TIME = 400;    // pause once fully deleted
+      var TYPE_SPEED = 45;
+      var DELETE_SPEED = 25;
+      var HOLD_TIME = 2000;
+      var GAP_TIME = 400;
 
       var phraseIndex = 0;
       var charIndex = 0;
@@ -4761,7 +4323,6 @@
         }
       }
 
-      // Stop animating once the visitor actually starts typing their own text.
       input.addEventListener('input', function () {
         if (input.value.length > 0 && timer) {
           clearTimeout(timer);
@@ -4773,7 +4334,6 @@
     })();
   </script>
 
-  <!-- ══ FAQ ACCORDION ══════════════════════════════════════ -->
   <script>
     (function () {
       var items = document.querySelectorAll('.faq-item');
@@ -4794,8 +4354,6 @@
         var icon = item.querySelector('.faq__icon i');
         var btn  = item.querySelector('.faq__question');
         item.classList.add('is-open');
-        /* Measure the real content height so the transition lands exactly
-           on the answer's natural size, whatever its length turns out to be. */
         if (wrap) wrap.style.maxHeight = wrap.scrollHeight + 'px';
         if (icon) { icon.classList.remove('fa-plus'); icon.classList.add('fa-minus'); }
         if (btn) btn.setAttribute('aria-expanded', 'true');
@@ -4806,8 +4364,6 @@
         if (!btn) return;
         btn.addEventListener('click', function () {
           var wasOpen = item.classList.contains('is-open');
-          /* Single-open accordion — closing the others also resets any
-             stale inline max-height so they're ready to reopen cleanly. */
           items.forEach(closeItem);
           if (!wasOpen) openItem(item);
         });
@@ -4815,7 +4371,6 @@
     })();
   </script>
 
-  <!-- ══ FOOTER HOVER TEXT ══════════════════════════════════ -->
   <script>
     (function () {
       var footer = document.querySelector('.footer');
@@ -4824,14 +4379,6 @@
       var gradient = document.getElementById('footerRevealMaskGradient');
       if (!footer || !hugeText || !svgEl || !gradient) return;
 
-      /* Gradient center/radius are set in the SVG's own user-space units
-         (the 1693 × 471 viewBox), not CSS percentages — the logo is now
-         plain inline SVG, not a CSS-masked box, so there's no --mx/--my
-         custom property to drive a background gradient with anymore.
-         `scale` converts the real on-screen pixel size of the rendered
-         SVG back into that 1693-wide coordinate space, so the ~170px
-         spotlight radius the design called for stays visually correct
-         at any responsive size (clamp(220px, 46vw, 820px)). */
       footer.addEventListener('mousemove', function (e) {
         var rect = svgEl.getBoundingClientRect();
         if (!rect.width || !rect.height) return;
@@ -4850,16 +4397,6 @@
     })();
   </script>
 
-  <!-- ══ FOOTER LOGO DRAW-IN ════════════════════════════════
-       One-time "the logo draws itself" animation the first time the
-       footer scrolls into view. Each <path> gets its own exact
-       stroke-dasharray/stroke-dashoffset via getTotalLength() (path
-       lengths differ per letter shape, so a single hardcoded value
-       would draw some letters too fast and cut others off), staggered
-       slightly per path. Progressive enhancement: if JS doesn't run, or
-       prefers-reduced-motion is set, or IntersectionObserver isn't
-       supported, no inline dasharray is ever applied and the paths just
-       render solid immediately — never an all-or-nothing dependency. -->
   <script>
     (function () {
       var hugeText = document.getElementById('footerHugeText');
@@ -4902,13 +4439,11 @@
     })();
   </script>
 
-  <!-- ══ NAV INTERACTIONS ═══════════════════════════════════ -->
   <script>
     (function () {
       var nav = document.querySelector('.nav');
       if (!nav) return;
 
-      /* ── Mobile hamburger toggle ── */
       var burger = document.getElementById('navBurger');
       if (burger) {
         burger.addEventListener('click', function () {
@@ -4916,7 +4451,6 @@
           burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
         });
 
-        /* Close the dropdown after tapping any link inside it */
         nav.querySelectorAll('.nav__panel a').forEach(function (a) {
           a.addEventListener('click', function () {
             nav.classList.remove('is-menu-open');
@@ -4925,7 +4459,6 @@
         });
       }
 
-      /* ── Shrink + glass blur once the page has scrolled past the hero ── */
       var ticking = false;
       function updateNavScrollState() {
         nav.classList.toggle('is-scrolled', window.scrollY > 40);
@@ -4939,7 +4472,6 @@
       }, { passive: true });
       updateNavScrollState();
 
-      /* ── Sliding pill behind whichever nav link is hovered ── */
       var list = nav.querySelector('.nav__links');
       var pill = nav.querySelector('.nav__pill');
       var links = nav.querySelectorAll('.nav__links a');
@@ -4963,7 +4495,6 @@
         });
       }
 
-      /* ── Magnetic pull on the primary nav CTA ── */
       var cta = nav.querySelector('.nav__cta');
       if (cta) {
         var strength = 0.35;
