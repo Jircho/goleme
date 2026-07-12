@@ -38,8 +38,8 @@
       --yellow: #fcd032;
       --yellow-dark: #D4A910;
       --ink-80: rgba(29, 28, 27, 0.80);
-      --ink-60: rgba(29, 28, 27, 0.60);
-      --ink-30: rgba(29, 28, 27, 0.30);
+      --ink-60: rgba(29, 28, 27, 0.72);
+      --ink-30: rgba(29, 28, 27, 0.46);
       --ink-10: rgba(29, 28, 27, 0.10);
       --ink-06: rgba(29, 28, 27, 0.06);
     }
@@ -65,6 +65,18 @@
     .wt-reveal.is-revealed {
       opacity: 1;
       transform: translateY(0) rotate(var(--tilt, 0deg));
+    }
+
+    /* Full-bleed showcase frame: fade in only, no vertical slide — a translateY
+       here would let the frame briefly hang below its final position while
+       revealing, exposing a sliver of the section's white background right
+       at the seam with the yellow testimonials strip below it. */
+    div.showcase__frame.wt-reveal {
+      transform: none;
+    }
+
+    div.showcase__frame.wt-reveal.is-revealed {
+      transform: none;
     }
 
     h1,
@@ -174,21 +186,22 @@
       list-style: none;
     }
 
-    .nav__links li.nav__pill {
+    .nav__links li::before {
+      content: '';
       position: absolute;
-      top: 50%;
-      left: 0;
-      height: 32px;
-      transform: translateY(-50%) translateX(0);
-      width: 0;
+      inset: -6px -14px;
       border-radius: 10px;
       background: var(--yellow);
       opacity: 0;
-      z-index: 0;
+      z-index: -1;
       pointer-events: none;
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        width 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-        opacity 0.2s ease;
+      transform: scale(0.92);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .nav__links li:hover::before {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .nav__links a {
@@ -227,7 +240,13 @@
     .nav__cta {
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), color 0.25s ease;
+    }
+
+    .btn--filled.nav__cta:hover {
+      background: linear-gradient(90deg, #FFB800, #FF5E00) border-box;
+      color: #FFFFFF;
+      opacity: 1;
     }
 
     .nav__cta::before {
@@ -315,6 +334,12 @@
       border: 1.5px solid var(--ink);
       background: transparent;
       color: var(--ink);
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .btn--outline:hover {
+      background: var(--ink);
+      color: #FFFFFF;
     }
 
     .btn--filled {
@@ -510,22 +535,97 @@
 
     .chat-bubble__preview {
       margin-top: 12px;
-      padding: 10px 14px;
+      padding: 8px;
       background: var(--ink-06);
-      border-radius: 10px;
+      border-radius: 12px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 8px;
       text-decoration: none;
       color: var(--ink);
-      font-size: 13px;
-      font-weight: 600;
       border: 1px solid var(--ink-10);
       transition: background 0.2s;
     }
 
     .chat-bubble__preview:hover {
       background: var(--ink-10);
+    }
+
+    .chat-bubble__preview-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 0 4px;
+    }
+
+    /* Miniature website thumbnail, visually consistent with the
+       "wt-website" builder preview shown further down the page. */
+    .chat-bubble__thumb {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FAFAF9;
+      border: 1px solid var(--ink-10);
+    }
+
+    .chat-bubble__thumb-chrome {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      height: 14px;
+      padding: 0 8px;
+      background: #EFEDEA;
+    }
+
+    .chat-bubble__thumb-chrome span {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: rgba(29, 28, 27, 0.18);
+    }
+
+    .chat-bubble__thumb-nav {
+      height: 22px;
+      background: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+    }
+
+    .chat-bubble__thumb-brand {
+      font-size: 9px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.3px;
+    }
+
+    .chat-bubble__thumb-cta {
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--ink);
+      background: var(--yellow);
+      border-radius: 4px;
+      padding: 3px 7px;
+    }
+
+    .chat-bubble__thumb-hero {
+      height: 30px;
+      background: linear-gradient(135deg, #1D1C1B 0%, #3a3836 100%);
+    }
+
+    .chat-bubble__thumb-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+      padding: 6px;
+    }
+
+    .chat-bubble__thumb-gallery span {
+      display: block;
+      border-radius: 4px;
+      aspect-ratio: 1 / 1;
     }
 
     .chat-icon {
@@ -677,7 +777,7 @@
       position: relative;
       overflow: hidden;
       background: #FFFFFF;
-      border: 2px dashed rgba(29, 28, 27, 0.18);
+      border: 2px solid rgba(29, 28, 27, 0.18);
       border-radius: 20px;
       padding: 24px;
       transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.3s ease;
@@ -1618,7 +1718,7 @@
       50%       { filter: drop-shadow(0 0 5px rgba(29,28,27,0.55)); }
     }    .showcase {
       width: 100%;
-      padding: 100px 0 120px;
+      padding: 0;
       background: var(--bg);
       border-top: 1px solid var(--ink-10);
       display: flex;
@@ -1632,7 +1732,7 @@
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 56px;
+      margin: 100px 0 56px;
     }
 
     .showcase__title {
@@ -1658,11 +1758,13 @@
     }
 
     .showcase__frame {
-      width: calc(100% - 40px);
-      max-width: 1420px;
+      width: 100%;
+      max-width: none;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
       background: var(--ink);
-      border-radius: 32px;
-      padding: 36px 24px;
+      border-radius: 0;
+      padding: 36px 0;
       position: relative;
       box-sizing: border-box;
       overflow: hidden;
@@ -1698,11 +1800,11 @@
 
     @keyframes mosaic-scroll-left {
       from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+      to { transform: translateX(-25%); }
     }
 
     @keyframes mosaic-scroll-right {
-      from { transform: translateX(-50%); }
+      from { transform: translateX(-25%); }
       to { transform: translateX(0); }
     }
 
@@ -2240,7 +2342,7 @@
       margin-top: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 2px;
     }
 
     .faq-item {
@@ -2249,11 +2351,13 @@
     }
 
     .faq__question {
-      align-self: flex-start;
+      align-self: center;
+      width: auto;
       display: inline-flex;
       align-items: center;
-      gap: 14px;
-      max-width: 88%;
+      justify-content: flex-start;
+      gap: 12px;
+      max-width: 92%;
       border: none;
       background: transparent;
       padding: 0;
@@ -2264,19 +2368,22 @@
 
     .faq__question-bubble {
       display: inline-flex;
-      padding: 14px 18px;
-      border-radius: 20px;
-      border-bottom-left-radius: 4px;
-      background: var(--ink);
-      transition: opacity 0.2s ease, box-shadow 0.25s ease;
+      background: var(--ink-06);
+      border-radius: 26px;
+      padding: 16px 22px;
+      transition: background 0.2s ease;
     }
 
     .faq__question:hover .faq__question-bubble {
-      opacity: 0.92;
+      background: var(--ink-10);
     }
 
     .faq-item.is-open .faq__question-bubble {
-      box-shadow: 0 10px 30px rgba(29, 28, 27, 0.14);
+      background: var(--yellow);
+    }
+
+    .faq-item.is-open .faq__question:hover .faq__question-bubble {
+      background: var(--yellow);
     }
 
     .faq__question-text {
@@ -2284,7 +2391,7 @@
       font-size: 14.5px;
       font-weight: 600;
       line-height: 1.4;
-      color: #FFFFFF;
+      color: var(--ink);
     }
 
     .faq__icon {
@@ -2304,16 +2411,18 @@
     }
 
     .faq-item.is-open .faq__icon {
-      color: var(--yellow-dark);
+      color: var(--ink-60);
     }
 
     .faq__answer-wrap {
-      align-self: flex-end;
-      max-width: 88%;
+      align-self: stretch;
+      width: 100%;
+      max-width: 100%;
       overflow: hidden;
       max-height: 0;
       opacity: 0;
-      padding: 10px 14px 14px 0;
+      padding: 6px 0 12px 14px;
+      box-sizing: border-box;
       transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
     }
 
@@ -2323,10 +2432,10 @@
 
     .faq__answer {
       position: relative;
-      background: #FFFFFF;
-      border: 1.5px solid var(--ink-10);
-      border-radius: 20px;
-      border-bottom-right-radius: 4px;
+      display: inline-block;
+      max-width: 480px;
+      background: var(--yellow);
+      border-radius: 16px;
       padding: 14px 18px;
       font-size: 14px;
       line-height: 1.6;
@@ -2338,12 +2447,11 @@
       content: '';
       position: absolute;
       bottom: -10px;
-      right: -10px;
+      left: -10px;
       width: 24px;
       height: 24px;
       background: url('logo-small.png') no-repeat center / contain;
       border-radius: 50%;
-      filter: drop-shadow(0 2px 6px rgba(29, 28, 27, 0.25));
     }
 
     .footer {
@@ -2654,10 +2762,6 @@
         gap: 18px;
       }
 
-      .nav.is-menu-open .nav__links li.nav__pill {
-        display: none;
-      }
-
       .nav.is-menu-open .nav__actions {
         flex-direction: column;
         align-items: stretch;
@@ -2757,12 +2861,15 @@
       }
 
       .showcase {
-        padding: 64px 0 72px;
+        padding: 0;
+      }
+
+      .showcase__header {
+        margin: 64px 0 56px;
       }
 
       .showcase__frame {
-        padding: 24px 16px;
-        border-radius: 24px;
+        padding: 24px 0;
       }
 
       .faq {
@@ -2784,11 +2891,10 @@
 
       .faq__list {
         margin-top: 4px;
-        gap: 12px;
+        gap: 4px;
       }
 
-      .faq__question,
-      .faq__answer-wrap {
+      .faq__question {
         max-width: 96%;
       }
 
@@ -2876,7 +2982,6 @@
 
       <div class="nav__panel">
         <ul class="nav__links">
-          <li class="nav__pill" aria-hidden="true"></li>
           <li><a href="#">Funkce</a></li>
           <li><a href="#">Ceník</a></li>
           <li><a href="#">Ukázky</a></li>
@@ -2886,7 +2991,7 @@
           <a href="#" class="nav__icon-btn" title="Jazyk"><i class="fa-solid fa-globe"></i></a>
           <a href="#" class="nav__icon-btn" title="Tmavý režim"><i class="fa-solid fa-moon"></i></a>
           <a href="#" class="btn btn--outline" style="margin-left: 4px;">Přihlásit se</a>
-          <a href="#" class="btn btn--filled nav__cta" style="color:var(--ink);">Vyzkoušet zdarma</a>
+          <a href="#" class="btn btn--filled nav__cta">Vyzkoušet zdarma</a>
         </div>
       </div>
 
@@ -2906,7 +3011,7 @@
         <div class="hero__prompt-card">
           <input class="hero__prompt-input" id="heroPromptInput" type="text"
             placeholder="Popište svůj salon (např. moderní barbershop v Praze)..." />
-          <a href="#" class="btn btn--filled hero__prompt-btn">Uchvať mě</a>
+          <a href="#" class="btn btn--filled hero__prompt-btn">Vyzkoušet zdarma</a>
         </div>
       </div>
       <div class="hero__right">
@@ -2934,8 +3039,25 @@
           <div class="chat-bubble chat-bubble--golem">
             Všechno je hotové. Podívej se na náhled.
             <a href="#" class="chat-bubble__preview">
-              <span style="padding-right: 6px;"> Prague Keratin Studio </span>
-              <span style="color:var(--yellow);"> Zobrazit web ↗</span>
+              <div class="chat-bubble__thumb" aria-hidden="true">
+                <div class="chat-bubble__thumb-chrome">
+                  <span></span><span></span><span></span>
+                </div>
+                <div class="chat-bubble__thumb-nav">
+                  <span class="chat-bubble__thumb-brand">PRAGUE KERATIN</span>
+                  <span class="chat-bubble__thumb-cta">Rezervovat</span>
+                </div>
+                <div class="chat-bubble__thumb-hero"></div>
+                <div class="chat-bubble__thumb-gallery">
+                  <span style="background:linear-gradient(135deg,#fcd032,#FF5E00);"></span>
+                  <span style="background:linear-gradient(135deg,#1D1C1B,#3a3836);"></span>
+                  <span style="background:linear-gradient(135deg,#D8D3F2,#818CF8);"></span>
+                </div>
+              </div>
+              <div class="chat-bubble__preview-row">
+                <span style="padding-right: 6px;"> Prague Keratin Studio </span>
+                <span style="color:var(--yellow);"> Zobrazit web ↗</span>
+              </div>
             </a>
           </div>
         </div>
@@ -3298,6 +3420,134 @@
               </div>
             </div>
 
+
+            <div class="tile sky" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="lbl">Aviation Style</div>
+                  <div style="font-size: 24px;">✈</div>
+                  <div style="width:70px;height:5px;background:rgba(10,58,92,0.12);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile dark" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:32px;letter-spacing:-1.5px;">TRONA</div>
+                  <div style="width:110px;height:5px;background:rgba(255,255,255,0.06);" class="bar"></div>
+                  <div style="width:70px;height:5px;background:rgba(255,255,255,0.04);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile dark" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:14px;color:rgba(255,255,255,0.8);">(Dumbbell AI) Gym</div>
+                  <div style="display:flex;align-items:center;gap:4px;margin-top:4px;">
+                    <div style="width:8px;height:24px;background:rgba(255,255,255,0.2);" class="bar"></div>
+                    <div style="width:24px;height:6px;background:rgba(255,255,255,0.4);" class="bar"></div>
+                    <div style="width:8px;height:24px;background:rgba(255,255,255,0.2);" class="bar"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:13px;text-align:left;max-width:130px;color:var(--ink);">Plan. Manage.
+                    Build.</div>
+                  <div style="width:100px;height:44px;background:rgba(29,28,27,0.06);border-radius:4px;"></div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="tile sky" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="lbl">Aviation Style</div>
+                  <div style="font-size: 24px;">✈</div>
+                  <div style="width:70px;height:5px;background:rgba(10,58,92,0.12);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile dark" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:32px;letter-spacing:-1.5px;">TRONA</div>
+                  <div style="width:110px;height:5px;background:rgba(255,255,255,0.06);" class="bar"></div>
+                  <div style="width:70px;height:5px;background:rgba(255,255,255,0.04);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile dark" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:14px;color:rgba(255,255,255,0.8);">(Dumbbell AI) Gym</div>
+                  <div style="display:flex;align-items:center;gap:4px;margin-top:4px;">
+                    <div style="width:8px;height:24px;background:rgba(255,255,255,0.2);" class="bar"></div>
+                    <div style="width:24px;height:6px;background:rgba(255,255,255,0.4);" class="bar"></div>
+                    <div style="width:8px;height:24px;background:rgba(255,255,255,0.2);" class="bar"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:13px;text-align:left;max-width:130px;color:var(--ink);">Plan. Manage.
+                    Build.</div>
+                  <div style="width:100px;height:44px;background:rgba(29,28,27,0.06);border-radius:4px;"></div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -3434,6 +3684,138 @@
               </div>
             </div>
 
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div
+                    style="width:48px;height:72px;background:rgba(29,28,27,0.06);border:1px solid rgba(29,28,27,0.12);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;">
+                    <div style="width:36px;height:22px;background:var(--ink);border-radius:2px;"></div>
+                    <div style="width:28px;height:3px;background:rgba(29,28,27,0.2);margin-top:6px;" class="bar"></div>
+                  </div>
+                  <div class="lbl" style="font-size:8px;">Loyalty Card</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile lavender" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:38px;letter-spacing:-2px;color:#2a1a7a;">RE</div>
+                  <div class="lbl" style="font-size:8px;color:rgba(42,26,122,0.40);">Creative Hub</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:12px;color:var(--ink);">Buy in groups.<br /><span
+                      style="background:var(--yellow);padding:0 4px;border-radius:2px;">Than Prisjakt.</span></div>
+                  <div style="width:80px;height:5px;background:rgba(29,28,27,0.08);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body"
+                style="background:#E2F3F9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                <div class="hdl" style="font-size:11px;color:#0a3a5c;">Elevate perspective</div>
+                <div
+                  style="width:80px;height:32px;background:rgba(10,58,92,0.08);border-radius:4px;position:relative;overflow:hidden;">
+                  <div
+                    style="width:90px;height:2px;background:var(--yellow);transform:rotate(15deg);position:absolute;top:15px;left:-5px;">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div
+                    style="width:48px;height:72px;background:rgba(29,28,27,0.06);border:1px solid rgba(29,28,27,0.12);border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px;">
+                    <div style="width:36px;height:22px;background:var(--ink);border-radius:2px;"></div>
+                    <div style="width:28px;height:3px;background:rgba(29,28,27,0.2);margin-top:6px;" class="bar"></div>
+                  </div>
+                  <div class="lbl" style="font-size:8px;">Loyalty Card</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile lavender" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:38px;letter-spacing:-2px;color:#2a1a7a;">RE</div>
+                  <div class="lbl" style="font-size:8px;color:rgba(42,26,122,0.40);">Creative Hub</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:12px;color:var(--ink);">Buy in groups.<br /><span
+                      style="background:var(--yellow);padding:0 4px;border-radius:2px;">Than Prisjakt.</span></div>
+                  <div style="width:80px;height:5px;background:rgba(29,28,27,0.08);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body"
+                style="background:#E2F3F9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;">
+                <div class="hdl" style="font-size:11px;color:#0a3a5c;">Elevate perspective</div>
+                <div
+                  style="width:80px;height:32px;background:rgba(10,58,92,0.08);border-radius:4px;position:relative;overflow:hidden;">
+                  <div
+                    style="width:90px;height:2px;background:var(--yellow);transform:rotate(15deg);position:absolute;top:15px;left:-5px;">
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -3502,6 +3884,134 @@
                 </div>
               </div>
             </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body" style="background:#EBF5FA;display:flex;align-items:flex-end;justify-content:center;">
+                <div
+                  style="width:40px;height:80px;border-left:2px solid var(--yellow);border-right:2px solid var(--yellow);position:relative;">
+                  <div style="width:100%;height:2px;background:var(--yellow);position:absolute;top:20px;"></div>
+                  <div style="width:100%;height:2px;background:var(--yellow);position:absolute;top:40px;"></div>
+                  <div style="width:100%;height:2px;background:var(--yellow);position:absolute;top:60px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack" style="align-items:flex-start;">
+                  <div class="hdl" style="font-size:11px;text-align:left;color:var(--ink);">FIND PEOPLE AND FUNDING</div>
+                  <div style="display:flex;align-items:center;gap:6px;width:100%;">
+                    <div style="flex:1;height:18px;background:rgba(29,28,27,0.07);border-radius:3px;"></div>
+                    <div style="width:24px;height:24px;background:rgba(29,28,27,0.1);border-radius:50%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile dark" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="lbl" style="font-size:8px;color:rgba(255,255,255,0.4);">YOUR GO-TO</div>
+                  <div class="hdl" style="font-size:12px;color:#fff;">webflow development ghost</div>
+                  <div style="width:46px;height:16px;background:#00d285;border-radius:8px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile mid" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:13px;color:var(--ink);">Elegant. Superior.<br />Saunas
+                    for life.</div>
+                  <div style="width:60px;height:5px;background:rgba(29,28,27,0.10);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body" style="background:#EBF5FA;display:flex;align-items:flex-end;justify-content:center;">
+                <div
+                  style="width:40px;height:80px;border-left:2px solid var(--yellow);border-right:2px solid var(--yellow);position:relative;">
+                  <div style="width:100%;height:2px;background:var(--yellow);position:absolute;top:20px;"></div>
+                  <div style="width:100%;height:2px;background:var(--yellow);position:absolute;top:40px;"></div>
+                  <div style="width:100%;height:2px;background:var(--yellow);position:absolute;top:60px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile light" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack" style="align-items:flex-start;">
+                  <div class="hdl" style="font-size:11px;text-align:left;color:var(--ink);">FIND PEOPLE AND FUNDING</div>
+                  <div style="display:flex;align-items:center;gap:6px;width:100%;">
+                    <div style="flex:1;height:18px;background:rgba(29,28,27,0.07);border-radius:3px;"></div>
+                    <div style="width:24px;height:24px;background:rgba(29,28,27,0.1);border-radius:50%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile dark" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="lbl" style="font-size:8px;color:rgba(255,255,255,0.4);">YOUR GO-TO</div>
+                  <div class="hdl" style="font-size:12px;color:#fff;">webflow development ghost</div>
+                  <div style="width:46px;height:16px;background:#00d285;border-radius:8px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tile mid" aria-hidden="true">
+              <div class="chrome">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+              </div>
+              <div class="body">
+                <div class="stack">
+                  <div class="hdl" style="font-size:13px;color:var(--ink);">Elegant. Superior.<br />Saunas
+                    for life.</div>
+                  <div style="width:60px;height:5px;background:rgba(29,28,27,0.10);" class="bar"></div>
+                </div>
+              </div>
+            </div>
+
 
             <div class="tile light" aria-hidden="true">
               <div class="chrome">
@@ -3824,6 +4334,14 @@
         </p>
       </div>
 
+      <div class="footer__contact-col">
+        <span class="footer__section-title">Kontaktujte nás</span>
+        <div class="footer__contact-info" style="margin-top: 8px;">
+          <a href="mailto:team@goleme.cz">team@goleme.cz</a>
+          <a href="tel:+420777123456">+420 777 123 456</a>
+        </div>
+      </div>
+
       <div class="footer__links-col">
         <span class="footer__section-title">Odkazy</span>
         <ul class="footer__col-list">
@@ -3832,20 +4350,6 @@
           <li><a href="#">Ceník</a></li>
           <li><a href="#">O nás</a></li>
         </ul>
-      </div>
-
-      <div class="footer__contact-col">
-        <span class="footer__section-title">Kontaktujte nás</span>
-        <div class="footer__contact-info" style="margin-top: 8px;">
-          <a href="mailto:team@goleme.cz">team@goleme.cz</a>
-          <a href="tel:+420777123456">+420 777 123 456</a>
-        </div>
-        <span class="footer__section-title" style="margin-top: 20px;">Sledujte nás</span>
-        <div class="footer__socials">
-          <a href="#"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-          <a href="#"><i class="fa-brands fa-youtube"></i></a>
-        </div>
       </div>
 
       <div class="footer__newsletter-col">
@@ -4339,21 +4843,58 @@
       var items = document.querySelectorAll('.faq-item');
       if (!items.length) return;
 
+      var FAQ_ANSWER_OFFSET = 56; // px the answer sticks out to the left of the (centered) question
+      var FAQ_ANSWER_BASE_INSET = 14; // must match .faq__answer-wrap's padding-left
+      var FAQ_ANSWER_RIGHT_MARGIN = 12; // px the answer's right edge must stay clear of the question's right edge
+      var FAQ_ANSWER_MIN_WIDTH = 180; // never let the computed cap squeeze the bubble narrower than this
+
       function closeItem(item) {
-        var wrap = item.querySelector('.faq__answer-wrap');
-        var icon = item.querySelector('.faq__icon i');
-        var btn  = item.querySelector('.faq__question');
+        var wrap   = item.querySelector('.faq__answer-wrap');
+        var icon   = item.querySelector('.faq__icon i');
+        var btn    = item.querySelector('.faq__question');
         item.classList.remove('is-open');
         if (wrap) wrap.style.maxHeight = '0px';
+        // Deliberately NOT resetting answer's marginLeft/maxWidth here: the
+        // wrap is about to animate max-height down to 0 with overflow
+        // hidden, and resetting the width/position instantly would make the
+        // answer visibly snap back to its default (wider, flush-left) size
+        // mid-fade — a flash right as it closes. Leaving the last computed
+        // values in place keeps the closing animation clean; the next
+        // openItem()/positionAnswer() call recomputes them fresh anyway.
         if (icon) { icon.classList.remove('fa-minus'); icon.classList.add('fa-plus'); }
         if (btn) btn.setAttribute('aria-expanded', 'false');
       }
 
+      function positionAnswer(item) {
+        var wrap   = item.querySelector('.faq__answer-wrap');
+        var bubble = item.querySelector('.faq__question-bubble');
+        var answer = item.querySelector('.faq__answer');
+        if (!wrap || !bubble || !answer) return;
+        var bubbleRect = bubble.getBoundingClientRect();
+        var wrapRect = wrap.getBoundingClientRect();
+        // Question is centered in the row; place the answer's left edge
+        // FAQ_ANSWER_OFFSET px to the LEFT of the question bubble's left
+        // edge, so the reply sits below-left of the question, like a normal
+        // chat thread reply.
+        var target = (bubbleRect.left - FAQ_ANSWER_OFFSET) - (wrapRect.left + FAQ_ANSWER_BASE_INSET);
+        var marginLeft = Math.max(0, target);
+        answer.style.marginLeft = marginLeft + 'px';
+
+        // Cap the answer's width so its right edge always stays to the left
+        // of the question bubble's right edge (never sticks out further
+        // right than the question above it).
+        var answerLeftX = wrapRect.left + FAQ_ANSWER_BASE_INSET + marginLeft;
+        var allowedWidth = (bubbleRect.right - FAQ_ANSWER_RIGHT_MARGIN) - answerLeftX;
+        allowedWidth = Math.max(FAQ_ANSWER_MIN_WIDTH, allowedWidth);
+        answer.style.maxWidth = Math.min(480, allowedWidth) + 'px';
+      }
+
       function openItem(item) {
-        var wrap = item.querySelector('.faq__answer-wrap');
-        var icon = item.querySelector('.faq__icon i');
-        var btn  = item.querySelector('.faq__question');
+        var wrap   = item.querySelector('.faq__answer-wrap');
+        var icon   = item.querySelector('.faq__icon i');
+        var btn    = item.querySelector('.faq__question');
         item.classList.add('is-open');
+        positionAnswer(item);
         if (wrap) wrap.style.maxHeight = wrap.scrollHeight + 'px';
         if (icon) { icon.classList.remove('fa-plus'); icon.classList.add('fa-minus'); }
         if (btn) btn.setAttribute('aria-expanded', 'true');
@@ -4472,42 +5013,6 @@
       }, { passive: true });
       updateNavScrollState();
 
-      var list = nav.querySelector('.nav__links');
-      var pill = nav.querySelector('.nav__pill');
-      var links = nav.querySelectorAll('.nav__links a');
-
-      if (list && pill && links.length) {
-        var movePill = function (el) {
-          var linkRect = el.getBoundingClientRect();
-          var listRect = list.getBoundingClientRect();
-          var pad = 14;
-          pill.style.width = (linkRect.width + pad * 2) + 'px';
-          pill.style.transform = 'translateY(-50%) translateX(' + (linkRect.left - listRect.left - pad) + 'px)';
-          pill.style.opacity = '1';
-        };
-
-        links.forEach(function (a) {
-          a.addEventListener('mouseenter', function () { movePill(a); });
-        });
-
-        list.addEventListener('mouseleave', function () {
-          pill.style.opacity = '0';
-        });
-      }
-
-      var cta = nav.querySelector('.nav__cta');
-      if (cta) {
-        var strength = 0.35;
-        cta.addEventListener('mousemove', function (e) {
-          var rect = cta.getBoundingClientRect();
-          var x = (e.clientX - rect.left - rect.width / 2) * strength;
-          var y = (e.clientY - rect.top - rect.height / 2) * strength;
-          cta.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-        });
-        cta.addEventListener('mouseleave', function () {
-          cta.style.transform = 'translate(0, 0)';
-        });
-      }
     })();
   </script>
 
