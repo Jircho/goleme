@@ -2715,7 +2715,20 @@
 
     .footer__legal {
       display: flex;
+      align-items: center;
       gap: 24px;
+    }
+
+    .footer__legal-logo {
+      display: none;
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(29, 28, 27, 0.14);
+      z-index: 2;
     }
 
     .footer__legal a {
@@ -2903,24 +2916,30 @@
       }
 
       .footer__top {
-        flex-direction: column;
+        flex-wrap: wrap;
         align-items: flex-start;
-        gap: 36px;
+        gap: 36px 24px;
         margin-bottom: 40px;
       }
 
       .footer__brand-col,
-      .footer__contact-col,
       .footer__newsletter-col {
         width: 100%;
         max-width: 420px;
       }
 
+      .footer__contact-col,
+      .footer__links-col {
+        flex: 1 1 160px;
+        width: auto;
+      }
+
       .footer__huge-text {
-        left: 50%;
-        transform: translateX(-50%);
-        max-width: calc(100% - 32px);
-        text-align: center;
+        display: none;
+      }
+
+      .footer__legal-logo {
+        display: inline-block;
       }
 
     }
@@ -4395,6 +4414,7 @@
         <div class="footer__legal">
           <a href="#">Obchodní podmínky</a>
           <a href="#">Ochrana soukromí</a>
+          <img src="logo-small.png" alt="Goleme" class="footer__legal-logo" />
         </div>
       </div>
     </div>
